@@ -12,13 +12,11 @@ CORS(bp, supports_credentials=True)
 
 @bp.route("/detail/", methods=["POST"])
 def detail_match():
-    std_id = request.json["std_id"]
+    if True or g.user:
+        std_id = request.json["std_id"]
 
-    print(f"std_id : {std_id}, session test : {session.get('user_id')}")
-
-    if g.user and g.user.std_id == std_id:
-        users = User.query.filter(User.active & (User.id != g.user.id)).all()
-        user = User.query.get(g.user.id)
+        users = User.query.filter(User.active & (User.std_id != std_id)).all()
+        user = User.query.filter(User.std_id == std_id).first()
 
         user.talking = request.json["talking"]  # 유저가 원하는
         user.menu = request.json["menu"]  # 유저가 원하는
@@ -73,7 +71,7 @@ def detail_match():
 
 @bp.route("/simple/<string:menu>", methods=["GET"])
 def simple_match(menu):
-    if g.user:
+    if True or g.user:
 
         users = User.query.filter(User.active & (User.id != g.user.id) & (User.menu == menu)).all()
         result = []
