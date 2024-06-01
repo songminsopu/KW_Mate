@@ -56,7 +56,6 @@ def login():
     if error is None:
         session.clear()
         session['user_id'] = user.id
-        print(f"session : {session['user_id']}")
         return jsonify({
                 'code': 1,
                 'msg': "로그인 성공",
@@ -80,6 +79,7 @@ def logout():
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
+    print(f"session : {session['user_id']}")
     if user_id is None:
         g.user = None
     else:
