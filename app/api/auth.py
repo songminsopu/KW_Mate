@@ -54,7 +54,7 @@ def login():
         error = "비밀번호가 올바르지 않습니다."
 
     if error is None:
-        # session.clear()
+        session.clear()
         session['user_id'] = user.id
         return jsonify({
                 'code': 1,

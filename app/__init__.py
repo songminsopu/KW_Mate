@@ -14,6 +14,8 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
+    app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+    app.config['SESSION_COOKIE_SECURE'] = True
     Session(app)
     CORS(app, supports_credentials=True)
 
