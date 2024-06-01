@@ -41,7 +41,6 @@ def singnup():
         })
 
 @bp.route('/login/', methods=['POST'])
-@cross_origin(supports_credentials=True)
 def login():
     error = None
     user = User.query.filter_by(std_id=request.json["std_id"]).first()
