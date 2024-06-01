@@ -1,4 +1,4 @@
-from flask import request, jsonify, Blueprint, g
+from flask import request, jsonify, Blueprint, session, g
 from app.models import User, BlockedList
 from app import db
 
@@ -11,8 +11,9 @@ bp = Blueprint('match', __name__, url_prefix='/match')
 def detail_match():
     std_id = request.json["std_id"]
 
-    print(f"{g.user}")
-    if g.user:
+    print(f"{session.get('user_id')}")
+
+    if g.user and g.user.std_id == std_id:
         users = User.query.filter(User.active & (User.id != g.user.id)).all()
         user = User.query.get(g.user.id)
 
