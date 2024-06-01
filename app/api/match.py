@@ -7,6 +7,7 @@ import string
 
 bp = Blueprint('match', __name__, url_prefix='/match')
 
+
 @bp.route("/detail/", methods=["POST"])
 def detail_match():
     std_id = request.json["std_id"]

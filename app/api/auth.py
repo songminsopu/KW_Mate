@@ -42,7 +42,6 @@ def singnup():
         })
 
 
-@cross_origin(supports_credentials=True)
 @bp.route('/login/', methods=['POST'])
 def login():
     error = None
@@ -76,7 +75,6 @@ def logout():
     })
 
 
-@cross_origin(supports_credentials=True)
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')

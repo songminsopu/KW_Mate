@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from flask_session import Session
+# from flask_session import Session
 from flask_cors import CORS
 
 
@@ -14,8 +14,8 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
-    Session(app)
-    CORS(app)
+    # Session(app)
+    CORS(app, origin='*', supports_credentials=True)
 
     # ORM
     db.init_app(app)
