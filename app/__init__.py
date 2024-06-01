@@ -1,6 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+# from flask_session import Session
+from flask_cors import CORS
+
 
 import config
 
@@ -9,6 +12,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
     app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
