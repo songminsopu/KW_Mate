@@ -2,9 +2,10 @@ from flask import request, jsonify, Blueprint, session, g
 from app.models import User
 import bcrypt
 from app import db
-from flask_cors import cross_origin
+from flask_cors import CORS
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+CORS(bp, supports_credentials=True)
 
 
 @bp.route('/signup/', methods=['POST'])

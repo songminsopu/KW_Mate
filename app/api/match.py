@@ -1,11 +1,13 @@
 from flask import request, jsonify, Blueprint, session, g
 from app.models import User, BlockedList
 from app import db
+from flask_cors import CORS
 
 import random
 import string
 
 bp = Blueprint('match', __name__, url_prefix='/match')
+CORS(bp, supports_credentials=True)
 
 
 @bp.route("/detail/", methods=["POST"])
