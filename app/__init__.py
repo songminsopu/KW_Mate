@@ -11,6 +11,7 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
+    app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 
     # ORM
     db.init_app(app)
