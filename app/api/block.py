@@ -9,7 +9,7 @@ CORS(bp, supports_credentials=True)
 
 @bp.route('/', methods=["POST", "DELETE"])
 def block():
-    if g.user:
+    if True or g.user:
         blocker = request.json["std_id"]
         blocked_user = request.json["bu_std_id"]
         bu_user = User.query.filter(User.std_id == blocked_user).first()

@@ -69,13 +69,13 @@ def detail_match():
             "matching_list": []
         })
 
-@bp.route("/simple/<string:menu>", methods=["GET"])
-def simple_match(menu):
+@bp.route("/simple/<string:std_id>/<string:menu>", methods=["GET"])
+def simple_match(std_id, menu):
     if True or g.user:
 
-        users = User.query.filter(User.active & (User.id != g.user.id) & (User.menu == menu)).all()
+        users = User.query.filter(User.active & (User.std_id != std_id) & (User.menu == menu)).all()
         result = []
-        blocked_lst = BlockedList.query.filter(BlockedList.blocker == g.user.std_id).all()
+        blocked_lst = BlockedList.query.filter(BlockedList.blocker == std_id).all()
         blocked_users = [bu.blocked_user for bu in blocked_lst]
 
         for user in users:
