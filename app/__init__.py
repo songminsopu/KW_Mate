@@ -15,7 +15,7 @@ def create_app():
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
     Session(app)
-    CORS(app, origin="*", supports_credentials=True)
+    CORS(app, supports_credentials=True)
 
     # ORM
     db.init_app(app)

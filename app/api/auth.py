@@ -5,7 +5,7 @@ from app import db
 from flask_cors import CORS
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-CORS(bp, origin="*", supports_credentials=True)
+CORS(bp, supports_credentials=True)
 
 
 @bp.route('/signup/', methods=['POST'])
