@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint, session, g
 from app.models import User
 import bcrypt
 from app import db
+from flask_cors import cross_origin
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -40,6 +41,7 @@ def singnup():
         })
 
 @bp.route('/login/', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def login():
     error = None
     user = User.query.filter_by(std_id=request.json["std_id"]).first()
@@ -71,6 +73,7 @@ def logout():
     })
 
 @bp.before_app_request
+@cross_origin(supports_credentials=True)
 def load_logged_in_user():
     user_id = session.get('user_id')
     if user_id is None:
