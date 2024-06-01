@@ -11,7 +11,7 @@ bp = Blueprint('match', __name__, url_prefix='/match')
 def detail_match():
     std_id = request.json["std_id"]
 
-    print(f"{session.get('user_id')}")
+    print(f"std_id : {std_id}, session test : {session.get('user_id')}")
 
     if g.user and g.user.std_id == std_id:
         users = User.query.filter(User.active & (User.id != g.user.id)).all()
