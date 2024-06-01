@@ -10,8 +10,8 @@ bp = Blueprint('match', __name__, url_prefix='/match')
 @bp.route("/detail/", methods=["POST"])
 def detail_match():
     std_id = request.json["std_id"]
-    print(f"std_id : {std_id}, g.user.std_id : {g.user.std_id}")
-    if g.user and std_id == g.user.std_id:
+
+    if g.user["std_id"] == std_id:
         users = User.query.filter(User.active & (User.id != g.user.id)).all()
         user = User.query.get(g.user.id)
 
