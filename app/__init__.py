@@ -14,6 +14,7 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "super secret key"  # Bc it's just a demo
     app.config.from_object(config)
+    app.config['CORS_HEADERS'] = 'Content-Type'
     # Session(app)
     CORS(app, origin='*', supports_credentials=True)
 
