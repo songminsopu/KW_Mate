@@ -101,6 +101,17 @@ def simple_match(std_id, menu):
             "matching_list": []
         })
 
+@bp.route("/cancel/<string:std_id>", methods=["GET"])
+def match_cancel(std_id):
+    user = User.query.filter(User.std_id == std_id).first()
+    user.active = False
+    db.session.commit()
+    db.session.remove()
+    return jsonify({
+        "code": 1,
+        "msg": "매칭 종료"
+    })
+
 @bp.route("/make_users/", methods=["GET"])
 def make_users():
     n = 20
