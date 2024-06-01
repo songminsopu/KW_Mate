@@ -70,9 +70,8 @@ def logout():
         'code': 1,
         'msg': "로그아웃",
     })
-
-@bp.before_app_request
 @cross_origin(supports_credentials=True)
+@bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
     if user_id is None:
