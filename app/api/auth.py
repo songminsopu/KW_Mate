@@ -6,6 +6,7 @@ from flask_cors import cross_origin
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 @bp.route('/signup/', methods=['POST'])
 def singnup():
     try:
@@ -40,6 +41,8 @@ def singnup():
             'msg': f"{e}",
         })
 
+
+@cross_origin(supports_credentials=True)
 @bp.route('/login/', methods=['POST'])
 def login():
     error = None
@@ -63,6 +66,7 @@ def login():
             'msg': error,
         })
 
+
 @bp.route('/logout/', methods=['GET'])
 def logout():
     session.clear()
@@ -70,6 +74,8 @@ def logout():
         'code': 1,
         'msg': "로그아웃",
     })
+
+
 @cross_origin(supports_credentials=True)
 @bp.before_app_request
 def load_logged_in_user():
