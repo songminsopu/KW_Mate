@@ -7,7 +7,7 @@ import random
 import string
 
 bp = Blueprint('match', __name__, url_prefix='/match')
-CORS(bp, supports_credentials=True)
+CORS(bp, origin="*", supports_credentials=True)
 
 
 @bp.route("/detail/", methods=["POST"])

@@ -4,7 +4,7 @@ from app import db
 from flask_cors import CORS
 
 bp = Blueprint('block', __name__, url_prefix='/block')
-CORS(bp, supports_credentials=True)
+CORS(bp, origin="*", supports_credentials=True)
 
 
 @bp.route('/', methods=["POST", "DELETE"])
