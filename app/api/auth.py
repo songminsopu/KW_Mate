@@ -56,6 +56,7 @@ def login():
     if error is None:
         session.clear()
         session['user_id'] = user.id
+        print(f"session : {session['user-id']}")
         return jsonify({
                 'code': 1,
                 'msg': "로그인 성공",
